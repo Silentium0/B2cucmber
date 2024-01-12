@@ -16,7 +16,7 @@ public class LoginPage {
     @FindBy(xpath = "//button[@type='submit']")
     public WebElement login;
 
-    @FindBy(xpath = "//button[@type='submit']")
+    @FindBy(xpath = "//button[@type='submit']/span")
     public WebElement continueBunnton;
 
     @FindBy(xpath = "//img[@src='/img/logo.d7557277.svg']")

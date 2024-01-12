@@ -1,5 +1,6 @@
 package com.loop.step_definitions;
 
+import com.loop.utilitues.BrowserUtils;
 import com.loop.utilitues.Driver;
 import io.cucumber.java.*;
 import org.openqa.selenium.OutputType;
@@ -7,9 +8,11 @@ import org.openqa.selenium.TakesScreenshot;
 
 public class Hooks {
     @Before
-    public void setUp(){
+    public void setUp(Scenario scenario){
         Driver.getDriver();
+        BrowserUtils.myScenario = scenario;
     }
+
     @After
     public void tearDown(Scenario scenario){
         // only take a screenshot when scenario failed
@@ -20,7 +23,7 @@ public class Hooks {
         //Driver.closeDriver();
 
     }
-    @AfterStep
+   // @AfterStep
     public void screenShot(Scenario scenario){
         // only take a screenshot when scenario failed
         if (scenario.isFailed()){

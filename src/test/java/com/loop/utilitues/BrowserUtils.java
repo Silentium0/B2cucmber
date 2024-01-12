@@ -1,18 +1,32 @@
 package com.loop.utilitues;
 
+import io.cucumber.java.Scenario;
 import org.junit.Assert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.List;
 import java.util.Set;
 
 public class BrowserUtils {
+
+    public static Scenario myScenario;
+    public static void takeScreenshot(){
+        try {
+            myScenario.log("Current url is: " + Driver.getDriver().getCurrentUrl());
+            final byte[] screenshot = ((TakesScreenshot) Driver.getDriver()).getScreenshotAs(OutputType.BYTES);
+            myScenario.attach(screenshot, "image/png", myScenario.getName());
+        }catch (WebDriverException wbd){
+            wbd.getMessage();
+        } catch (ClassCastException cce){
+            cce.getMessage();
+        }
+    }
+
+
     /**
      * validate if driver switch to expected url and title
      * @param driver
@@ -144,7 +158,12 @@ public class BrowserUtils {
 
     }
 
-
+    /**
+     * Waite for element to be clickable
+     * @param element
+     * @param timeout
+     * @return
+     */
     public static  WebElement waitForClickable(WebElement element,int timeout){
         WebDriverWait wait = new WebDriverWait(Driver.getDriver(),Duration.ofSeconds(timeout));
         return wait.until(ExpectedConditions.elementToBeClickable(element));
@@ -163,6 +182,15 @@ public class BrowserUtils {
             e.printStackTrace();
         }
     }
+
+    public static void listOfElements(List<WebElement> elements) {
+        for (int i = 0; i < elements.size()-1; i++) {
+            System.out.print((i + 1) + " ");
+            System.out.println(elements.get(i).getText());
+
+        }
+    }
+
 
 
 

@@ -9,6 +9,9 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
+import java.sql.DriverManager;
+import java.util.concurrent.TimeUnit;
+
 import static org.junit.Assert.assertEquals;
 
 public class LoginStepDef {
@@ -30,11 +33,11 @@ public class LoginStepDef {
     public void user_clicks_login_button() {
         loginPage.login.click();
     }
+
     @Then("user should see the home page for client")
     public void user_should_see_the_home_page_for_client() {
-        BrowserUtils.justWait(3000);
+        BrowserUtils.waitForClickable(loginPage.continueBunnton,DocuportConstants.LARGE);
         loginPage.continueBunnton.click();
-        //Assert.assertTrue(loginPage.title.getAttribute("alt").contains("Docuport"));
         assertEquals(loginPage.title.getAttribute("alt"),"Docuport");
 
     }
