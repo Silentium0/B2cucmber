@@ -52,13 +52,14 @@ public class GoogleSearchStepDefs {
 
     @Then("user searchs the following item")
     public void user_searchs_the_following_item(List<String> item) {
-        item.forEach(p -> {
-            googleSearchPage.serchBox.sendKeys(p+Keys.ENTER);
-            assertEquals(p + " - Google Search",Driver.getDriver().getTitle());
-        });
+//        item.forEach(p -> {
+//            googleSearchPage.serchBox.clear();
+//            googleSearchPage.serchBox.sendKeys(p+Keys.ENTER);
+//            assertEquals(p + " - Google Search",Driver.getDriver().getTitle());
+//        });
 
         for (String s : item){
-            googleSearchPage.searchButton.clear();
+            googleSearchPage.serchBox.clear();
             googleSearchPage.serchBox.sendKeys(s + Keys.ENTER);
             assertEquals(s + " - Google Search", Driver.getDriver().getTitle());
         }
