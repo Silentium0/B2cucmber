@@ -3,6 +3,7 @@ package com.loop.step_definitions;
 import com.loop.pages.GoogleSearchPage;
 import com.loop.utilitues.BrowserUtils;
 import com.loop.utilitues.ConfigurationReader;
+import com.loop.utilitues.DocuportConstants;
 import com.loop.utilitues.Driver;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -63,6 +64,17 @@ public class GoogleSearchStepDefs {
             googleSearchPage.serchBox.sendKeys(s + Keys.ENTER);
             assertEquals(s + " - Google Search", Driver.getDriver().getTitle());
         }
+    }
+
+    @When("user search for the {string}")
+    public void user_search_for_the(String country) {
+             googleSearchPage.serchBox.sendKeys("What is Capital is : "+country+ Keys.ENTER);
+             BrowserUtils.justWait(DocuportConstants.EXTRASMALL);
+    }
+    @Then("user should see the {string} in the result")
+    public void user_chould_see_the_in_the_result(String capital) {
+        assertEquals("expected Capital city: "+capital+" does NOT match with actual: "+googleSearchPage.capital.getText(),googleSearchPage.capital.getText(),capital);
+
     }
 
 

@@ -11,9 +11,9 @@ import org.junit.runner.RunWith;
                 "json:target/json-report/json-report.json"},
         features = "src/test/resources/features",
         glue = "com/loop/step_definitions",
-        dryRun = false,
-        tags = "@java",
-        monochrome = true
+        dryRun = true,
+        tags =  "@SmartBears" //  or @smoke1 or @smoke2 or @smoke3"   // if you want to run all  of them
+        //monochrome = true
 )
 
 public class CukesRunner {
