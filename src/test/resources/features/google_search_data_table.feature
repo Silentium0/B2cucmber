@@ -5,8 +5,10 @@ Feature: Passing multiple parameters to the same step
   Scenario: Search multiple items
     Given user is on Google search page
     Then  user searchs the following item
+      | items        |
       | Loop academy |
       | java         |
       | selenium     |
       | SQL          |
       | API          |
+      | anything     |

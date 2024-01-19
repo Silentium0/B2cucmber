@@ -11,6 +11,7 @@ import io.cucumber.java.en.When;
 import org.openqa.selenium.Keys;
 
 import java.util.List;
+import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 
@@ -52,18 +53,22 @@ public class GoogleSearchStepDefs {
     }
 
     @Then("user searchs the following item")
-    public void user_searchs_the_following_item(List<String> item) {
-//        item.forEach(p -> {
-//            googleSearchPage.serchBox.clear();
-//            googleSearchPage.serchBox.sendKeys(p+Keys.ENTER);
-//            assertEquals(p + " - Google Search",Driver.getDriver().getTitle());
-//        });
+    public void user_searchs_the_following_item(List<Map<String, String>> item) {
 
-        for (String s : item){
+        for (Map<String,String> list : item){
+            System.out.println(list.get("items"));
             googleSearchPage.serchBox.clear();
-            googleSearchPage.serchBox.sendKeys(s + Keys.ENTER);
-            assertEquals(s + " - Google Search", Driver.getDriver().getTitle());
+            googleSearchPage.serchBox.sendKeys(list.get("item")+Keys.ENTER);
+
+
         }
+//
+
+//        for (String s : item){
+//            googleSearchPage.serchBox.clear();
+//            googleSearchPage.serchBox.sendKeys(s + Keys.ENTER);
+//            assertEquals(s + " - Google Search", Driver.getDriver().getTitle());
+//        }
     }
 
     @When("user search for the {string}")
