@@ -32,7 +32,7 @@ public class GoogleSearchStepDefs {
     @Then("user should see Loop  Academy  - Google search in the google title")
     public void user_should_see_loop_academy_google_search_in_the_google_title() {
         String actualTitle = Driver.getDriver().getTitle();
-        assertEquals("expected does not match the acti=uaal","loop Academy - Google Search",actualTitle);
+        assertEquals("expected does not match the acti=uaal","Loop Academy - Google Search",actualTitle);
     }
 
     @When("user types {string} in the google search box and click enter")
