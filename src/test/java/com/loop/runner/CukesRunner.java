@@ -12,10 +12,12 @@ import org.junit.runner.RunWith;
         features = "src/test/resources/features",
         glue = "com/loop/step_definitions",
         dryRun = false,
-        tags =  "@mapList" //  or @smoke1 or @smoke2 or @smoke3"   // if you want to run all  of them
-        //monochrome = true
+        tags =  "@smoke3", //  or @smoke1 or @smoke2 or @smoke3"   // if you want to run all  of them
+        monochrome = true
 )
 
 public class CukesRunner {
 
 }
+       //mvn test -Dcucubber.filter.tags=@smoke3
+
