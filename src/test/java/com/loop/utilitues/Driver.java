@@ -17,11 +17,13 @@ public class Driver {
     static - run before everything else and also use in static method
      */
 
-        private static WebDriver driver;
+        //private static WebDriver driver;
 
     /*
     reusable method that will return the same driver instance every time called
      */
+
+    private static  InheritableThreadLocal<WebDriver> drivePool = new InheritableThreadLocal<>();
 
         /**
          * singleton pattern
@@ -29,22 +31,24 @@ public class Driver {
          * @return driver
          */
         public static WebDriver getDriver() {
-            if (driver == null) {
+            if (drivePool.get() == null) {
                 String browserType = ConfigurationReader.getProperty("browser");
                 switch (browserType.toLowerCase()) {
                     case "chrome":
                         WebDriverManager.chromedriver().setup();
-                        driver = new ChromeDriver();
+                        drivePool.set( new ChromeDriver());
+                        drivePool.get().manage().window().maximize();
+                        drivePool.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
                         break;
                     case "firefox":
                         WebDriverManager.firefoxdriver().setup();
-                        driver = new FirefoxDriver();
+                        drivePool.set (new FirefoxDriver());
+                        drivePool.get().manage().window().maximize();
+                        drivePool.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
                         break;
                 }
-                driver.manage().window().maximize();
-                driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
             }
-            return driver;
+            return drivePool.get();
         }
 
         /**
@@ -53,9 +57,9 @@ public class Driver {
          *
          */
         public static void closeDriver() {
-            if (driver != null) {
-                driver.quit();
-                driver = null;
+            if (drivePool.get() != null) {
+                drivePool.get().quit();
+                drivePool.remove();
             }
         }
     }
