@@ -22,10 +22,6 @@ public class ProductStepDefs {
     @Then("User should be able to see expected prices in following products")
     public void user_should_be_able_to_see_expected_prices_in_following_products(List<Map<String, String>> productDetails) {
         for (Map<String,String> productDetail : productDetails){
-//            System.out.println("___________________________");
-//            System.out.println(productDetail.get("Category"));
-//            System.out.println(productDetail.get("Product"));
-//            System.out.println(productDetail.get("expectedPrice"));
             productPage.clickCategory(productDetail.get("Category"));
             String actual = productPage.getProductPrice(productDetail.get("Product"));
             String expectedPrice = productDetail.get("expectedPrice");

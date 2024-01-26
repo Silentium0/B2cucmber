@@ -9,5 +9,5 @@ Feature: Scenario Outline practice
       | Azerbaijan  | Baku             |
       | Ukraine     | Kyiv             |
       | Afghanistan | Kabul            |
-      | USA         | Washington, D.C. |
+      | USA         | Washington, D.C |
       | Uzbekistan  | Tashkent         |

@@ -34,6 +34,7 @@ public class Hooks {
         }
         Driver.closeDriver();
         LOG.info("..........END AUTOMATION.........LOOP ACADEMY");
+
     }
 
     // @AfterStep
